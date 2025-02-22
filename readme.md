@@ -7,7 +7,7 @@ We aim to minimize the Lasso objective for a single variable βj.
 Expanding the squared term:
 
 $$
-\|\mathbf{r}_j - \mathbf{X}_j \beta_j\|_2^2 
+|\mathbf{r}_j - \mathbf{X}_j \beta_j\|_2^2 
 = \sum_{i=1}^{m} (\,r_{j,i} - X_{i,j}\,\beta_j\,)^2.
 $$
 
