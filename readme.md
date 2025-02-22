@@ -58,3 +58,76 @@ $$
 \;-\;\frac{1}{m}\,\rho_j\,\beta_j 
 \;+\;\lambda\,|\beta_j|.
 $$
+
+### Finding the Optimal Solution using Subgradient Method
+For Lasso regression, the L1 penalty term $|\beta_j|$ is not differentiable at $\beta_j = 0$, but we can use the **subgradient**:
+
+$$
+\frac{\partial}{\partial \beta_j} |\beta_j| =
+\begin{cases}
++1, & \text{if } \beta_j > 0, \\
+-1, & \text{if } \beta_j < 0, \\
+[-1,1], & \text{if } \beta_j = 0.
+\end{cases}
+$$
+
+Taking the subgradient of the objective function:
+
+$$
+\frac{1}{m} \|X_j\|_2^2 \beta_j - \frac{1}{m} \rho_j + \lambda g = 0, \quad \text{where } g \in \frac{\partial}{\partial \beta_j} |\beta_j|.
+$$
+
+Rearranging:
+
+$$
+\|X_j\|_2^2 \beta_j - \rho_j + m\lambda g = 0.
+$$
+
+#### Case 1: $\beta_j \neq 0$
+If $\beta_j > 0$, then $g = 1$, and the equation becomes:
+
+$$
+\|X_j\|_2^2 \beta_j = \rho_j - m\lambda.
+$$
+
+Solving for $\beta_j$:
+
+$$
+\beta_j = \frac{\rho_j - m\lambda}{\|X_j\|_2^2}.
+$$
+
+Similarly, if $\beta_j < 0$, then $g = -1$ and the equation becomes:
+
+$$
+\|X_j\|_2^2 \beta_j = \rho_j + m\lambda.
+$$
+
+Solving for $\beta_j$:
+
+$$
+\beta_j = \frac{\rho_j + m\lambda}{\|X_j\|_2^2}.
+$$
+
+#### Case 2: $\beta_j = 0$
+For $\beta_j = 0$ to be optimal, the subgradient condition requires:
+
+$$
+- m\lambda \leq \rho_j \leq m\lambda.
+$$
+
+And we will use the mean of the interval. So just take 0 here. 
+
+
+### Conclusion
+For Lasso regression, the optimal solution using the subgradient method is:
+
+$$
+\beta_j =
+\begin{cases}
+\frac{\rho_j - m\lambda}{\|X_j\|_2^2}, & \text{if } \beta_j > 0, \\
+\frac{\rho_j + m\lambda}{\|X_j\|_2^2}, & \text{if } \beta_j < 0, \\
+0, & \text{if } |\beta_j| = 0.
+\end{cases}
+$$
+
+This method ensures that small coefficients are shrunk to zero, achieving feature selection while maintaining computational efficiency.
