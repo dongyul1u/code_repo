@@ -59,8 +59,6 @@ $$
 \;+\;\lambda\,|\beta_j|.
 $$
 
-
-
 ### Finding the Optimal Solution using Subgradient Method
 For Lasso regression, the L1 penalty term $|\beta_j|$ is not differentiable at $\beta_j = 0$, but we can use the **subgradient**:
 
