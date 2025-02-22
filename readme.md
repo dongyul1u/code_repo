@@ -2,10 +2,9 @@
 
 ### Single-variable objective function
 
-We aim to minimize the Lasso objective for a single variable $\beta_j$.
+We aim to minimize the Lasso objective for a single variable βj.
 
 Expanding the squared term:
-
 $$
 \|\mathbf{r}_j - \mathbf{X}_j \beta_j\|_2^2 
 = \sum_{i=1}^{m} (\,r_{j,i} - X_{i,j}\,\beta_j\,)^2.
@@ -34,8 +33,13 @@ $$
 \;+\;\lambda\,|\beta_j|.
 $$
 
-Since the term $\tfrac{1}{2m}\sum_{i=1}^m r_{j,i}^2$ does not depend on $\beta_j$, we can ignore it w.r.t.$ \beta_j$:
+Since the term 
+$$
+\tfrac{1}{2m}\sum_{i=1}^m r_{j,i}^2
+$$
 
+
+does not depend on βj, we can ignore it :
 $$
 \frac{1}{2m} \sum_{i=1}^{m} X_{i,j}^2\,\beta_j^2 
 \;-\;\frac{1}{m} \sum_{i=1}^{m} r_{j,i}\,X_{i,j}\,\beta_j 
@@ -60,7 +64,7 @@ $$
 $$
 
 ### Finding the Optimal Solution using Subgradient Method
-For Lasso regression, the L1 penalty term $|\beta_j|$ is not differentiable at $\beta_j = 0$, but we can use the **subgradient**:
+For Lasso regression, the L1 penalty term βj is not differentiable at βj = 0, but we can use the **subgradient**:
 
 $$
 \frac{\partial}{\partial \beta_j} |\beta_j| =
@@ -83,33 +87,33 @@ $$
 \|X_j\|_2^2 \beta_j - \rho_j + m\lambda g = 0.
 $$
 
-#### Case 1: $\beta_j \neq 0$
-If $\beta_j > 0$, then $g = 1$, and the equation becomes:
+#### Case 1: βj ≠ 0
+If βj > 0, then g = 1, and the equation becomes:
 
 $$
 \|X_j\|_2^2 \beta_j = \rho_j - m\lambda.
 $$
 
-Solving for $\beta_j$:
+Solving for βj:
 
 $$
 \beta_j = \frac{\rho_j - m\lambda}{\|X_j\|_2^2}.
 $$
 
-Similarly, if $\beta_j < 0$, then $g = -1$ and the equation becomes:
+Similarly, if βj < 0, then g = -1 and the equation becomes:
 
 $$
 \|X_j\|_2^2 \beta_j = \rho_j + m\lambda.
 $$
 
-Solving for $\beta_j$:
+Solving for βj:
 
 $$
 \beta_j = \frac{\rho_j + m\lambda}{\|X_j\|_2^2}.
 $$
 
-#### Case 2: $\beta_j = 0$
-For $\beta_j = 0$ to be optimal, the subgradient condition requires:
+#### Case 2: βj = 0
+For βj = 0 to be optimal, the subgradient condition requires:
 
 $$
 - m\lambda \leq \rho_j \leq m\lambda.
